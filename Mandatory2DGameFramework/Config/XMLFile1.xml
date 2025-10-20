@@ -1,0 +1,8 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ServerConfig>
+	<MaxX>50</MaxX>
+	<MaxY>75</MaxY>
+	<Easy>Easy</Easy>
+	<Normal>Normal</Normal>
+	<Hard>Hard</Hard>
+</ServerConfig>
