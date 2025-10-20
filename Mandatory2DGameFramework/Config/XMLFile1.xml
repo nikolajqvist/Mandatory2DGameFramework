@@ -1,5 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ServerConfig>
+  <GameName>Peter's spil</GameName>
+  <SwitchName>Peter's switch</SwitchName>
 	<MaxX>50</MaxX>
 	<MaxY>75</MaxY>
 	<Easy>Easy</Easy>
