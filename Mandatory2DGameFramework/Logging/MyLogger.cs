@@ -13,12 +13,10 @@ namespace Mandatory2DGameFramework.Logging
         private static int _nextId;
         private static MyLogger _instance = null;
         private TraceSource _traceSource;
-        private XmlClass _xmlClass;
         private MyLogger()
         {
-            _xmlClass = new XmlClass();
-            _traceSource = new TraceSource(_xmlClass.GetXmlString("GameName"));
-            _traceSource.Switch = new SourceSwitch(_xmlClass.GetXmlString("SwitchName"));
+            _traceSource = new TraceSource("Peter's spil");
+            _traceSource.Switch = new SourceSwitch("Peter's switch");
         }
         public static MyLogger GetInstance()
         {
@@ -46,25 +44,33 @@ namespace Mandatory2DGameFramework.Logging
         {
             int logid = GenerateId();
             _traceSource.TraceEvent(TraceEventType.Information, logid, message);
+            Flushing();
         }
         public void LogWarning(string message)
         {
             int logid = GenerateId();
             _traceSource.TraceEvent(TraceEventType.Warning, logid, message);
+            Flushing();
         }
         public void LogError(string message)
         {
             int logid = GenerateId();
             _traceSource.TraceEvent(TraceEventType.Error, logid, message);
+            Flushing();
         }
         public void LogCritical(string message)
         {
             int logid = GenerateId();
             _traceSource.TraceEvent(TraceEventType.Critical, logid, message);
+            Flushing();
         }
         private int GenerateId()
         {
             return _nextId++;
+        }
+        private void Flushing()
+        {
+            _traceSource.Flush();
         }
     }
 }

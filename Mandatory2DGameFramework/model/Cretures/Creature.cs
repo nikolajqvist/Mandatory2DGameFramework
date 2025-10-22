@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Mandatory2DGameFramework.model.Cretures
 {
-    public class Creature
+    public abstract class Creature
     {
         public string Name { get; set; }
         public int HitPoint { get; set; }
@@ -28,26 +28,18 @@ namespace Mandatory2DGameFramework.model.Cretures
             Defence = null;
 
         }
-
         public int Hit()
         {
-            throw new NotImplementedException();
+            return Attack.Hit;
         }
-
         public void ReceiveHit(int hit)
         {
-            throw new NotImplementedException();
+            HitPoint -= hit;
         }
-
         public void Loot(WorldObject obj)
         {
             throw new NotImplementedException();
         }
-
-
-
-
-
         public override string ToString()
         {
             return $"{{{nameof(Name)}={Name}, {nameof(HitPoint)}={HitPoint.ToString()}, {nameof(Attack)}={Attack}, {nameof(Defence)}={Defence}}}";
