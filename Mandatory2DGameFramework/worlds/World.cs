@@ -20,11 +20,11 @@ namespace Mandatory2DGameFramework.worlds
         private List<Creature> _creatures;
         private readonly XmlClass _xml;
 
-        public World(XmlClass xml, string difficulty)
+        public World(XmlClass xml, string difficulty, string MaXX, string MaXY)
         {
             _xml = xml;
-            MaxX = _xml.GetXmlInt("MaxX");
-            MaxY = _xml.GetXmlInt("MaxY");
+            MaxX = _xml.GetXmlInt(MaXX);
+            MaxY = _xml.GetXmlInt(MaXY);
             Difficulty = _xml.GetXmlString(difficulty);
             _worldObjects = new List<WorldObject>();
             _creatures = new List<Creature>();            

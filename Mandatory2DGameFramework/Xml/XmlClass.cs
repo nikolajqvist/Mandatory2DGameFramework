@@ -9,18 +9,19 @@ namespace Mandatory2DGameFramework.Xml
 {
     public class XmlClass
     {
-        private string _xmlPath = @"D:\Datamatikeruddannelse\FjerdeSemester\AvanceretProgrammering\OpbligatoriskOpgave\MandatoryOOAdvanceret\Mandatory2DGameFramework\Config\XMLFile1.xml";
-        private XmlDocument _xmlDocument;
-        public XmlClass(XmlDocument xmlDocument)
+        private string _xmlPath;
+        private readonly XmlDocument _xmlDocument;
+        public XmlClass(string xmlpath)
         {
-            _xmlDocument = xmlDocument;
+            _xmlPath = xmlpath;
+            _xmlDocument = new XmlDocument();
         }
 
         public int GetXmlInt(string XorY)
         {
             int value = 0;
-            LoadingXml(_xmlDocument, _xmlPath);
-            XmlNode? node = GetNode(_xmlDocument, XorY);
+            LoadingXml();
+            XmlNode? node = GetNode(XorY);
             if (node != null)
             {
                 string txtXorY = node.InnerText.Trim();
@@ -31,21 +32,21 @@ namespace Mandatory2DGameFramework.Xml
         public string GetXmlString(string nodefromXml)
         {
             string stringtoreturn = null;
-            LoadingXml(_xmlDocument, _xmlPath);
-            XmlNode? node = GetNode(_xmlDocument, nodefromXml); 
+            LoadingXml();
+            XmlNode? node = GetNode(nodefromXml); 
             if (node != null)
             {
                 stringtoreturn = node.InnerText.Trim();
             }
             return stringtoreturn;
         }
-        private void LoadingXml(XmlDocument xmlDocument,  string xmlPath)
+        private void LoadingXml()
         {
-            xmlDocument.LoadXml(xmlPath);
+            _xmlDocument.LoadXml(_xmlPath);
         }
-        private XmlNode GetNode(XmlDocument xmldoc, string XorY)
+        private XmlNode GetNode(string XorY)
         {
-            XmlNode? node = xmldoc.DocumentElement.SelectSingleNode(XorY);
+            XmlNode? node = _xmlDocument.DocumentElement.SelectSingleNode(XorY);
             return node;
         }
     }
