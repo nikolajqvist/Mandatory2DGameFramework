@@ -9,7 +9,7 @@ using Mandatory2DGameFramework.model.Cretures;
 
 namespace Mandatory2DGameFramework.Observer
 {
-    public class DamageLogging
+    public class DamageLogging:IDamageLogging
     {
         private MyLogger _logger;
         public DamageLogging()

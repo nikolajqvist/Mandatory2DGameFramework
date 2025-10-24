@@ -1,4 +1,5 @@
-﻿using Mandatory2DGameFramework.Logging;
+﻿using Mandatory2DGameFramework.Interfaces;
+using Mandatory2DGameFramework.Logging;
 using Mandatory2DGameFramework.model.attack;
 using Mandatory2DGameFramework.model.defence;
 using Mandatory2DGameFramework.worlds;
@@ -10,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace Mandatory2DGameFramework.model.Cretures
 {
-    public abstract class Creature
+    public abstract class Creature : IDisposable
     {
         public string Name { get; set; }
         public int HitPoint { get; set; }
@@ -18,17 +19,24 @@ namespace Mandatory2DGameFramework.model.Cretures
         // Todo consider how many attack / defence weapons are allowed
         public AttackItem? Attack { get; set; }
         public DefenceItem? Defence { get; set; }
-        protected Creature()
+        private IBoostRange? _decorator;
+        protected Creature(string name, int hitpoint)
         {
-            Name = string.Empty;
-            HitPoint = 100;
+            Name = name;
+            HitPoint = hitpoint;
+        }
+        protected Creature(IBoostRange? decorator, string name, int hitpoint)
+        {
+            _decorator = decorator;
+            Name = name;
+            HitPoint = hitpoint;
 
             Attack = null;
             Defence = null;
         }
         public virtual int Hit()
         {
-            if(Attack == null)
+            if (Attack == null)
             {
                 throw new NullReferenceException("Der mangler et svær for at kunne give skade");
             }
@@ -43,6 +51,14 @@ namespace Mandatory2DGameFramework.model.Cretures
             if (obj == null)
             {
                 throw new NullReferenceException("Der mangler et objekt at loote");
+            }
+            if (Attack != null & obj is AttackItem attackitem)
+            {
+                throw new Exception("Har allerde et våben");
+            }
+            if (Defence != null & obj is DefenceItem defenceitem)
+            {
+                throw new Exception("Har allerde et skjold");
             }
             if (obj.Lootable)
             {
@@ -61,5 +77,10 @@ namespace Mandatory2DGameFramework.model.Cretures
             return $"{{{nameof(Name)}={Name}, {nameof(HitPoint)}={HitPoint.ToString()}, {nameof(Attack)}={Attack}, {nameof(Defence)}={Defence}}}";
         }
 
+        public void Dispose()
+        {
+            Attack = null;
+            Defence = null;
+        }
     }
 }
