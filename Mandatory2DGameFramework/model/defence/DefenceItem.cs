@@ -18,7 +18,7 @@ namespace Mandatory2DGameFramework.model.defence
             Name = name;
             ReduceHitPoint = 0;            
         }
-        public DefenceItem(IReduceHitpoints reducevenmore, string name)
+        public DefenceItem(string name, IReduceHitpoints reducevenmore)
         {
             Name = name;
             ReduceHitPoint = 0;

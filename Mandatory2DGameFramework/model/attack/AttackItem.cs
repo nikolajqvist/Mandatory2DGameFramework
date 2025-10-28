@@ -20,7 +20,7 @@ namespace Mandatory2DGameFramework.model.attack
             Hit = hit;
             Range = range;
         }
-        public AttackItem(IBoostRange decorator, string name, int hit, int range)
+        public AttackItem(string name, int hit, int range, IBoostRange decorator)
         {
             Name = name;
             Hit = hit;

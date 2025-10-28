@@ -11,21 +11,20 @@ using System.Threading.Tasks;
 
 namespace Mandatory2DGameFramework.model.Cretures
 {
-    public abstract class Creature : IDisposable
+    public abstract class Creature: WorldObject, IDisposable
     {
         public string Name { get; set; }
         public int HitPoint { get; set; }
-
         // Todo consider how many attack / defence weapons are allowed
         public AttackItem? Attack { get; set; }
         public DefenceItem? Defence { get; set; }
         private IBoostRange? _decorator;
+        private IReduceHitpoints _reduceHitpoints;
         protected Creature(string name, int hitpoint)
         {
-            Name = name;
             HitPoint = hitpoint;
         }
-        protected Creature(IBoostRange? decorator, string name, int hitpoint)
+        protected Creature(string name, int hitpoint, IBoostRange decorator)
         {
             _decorator = decorator;
             Name = name;
@@ -34,6 +33,27 @@ namespace Mandatory2DGameFramework.model.Cretures
             Attack = null;
             Defence = null;
         }
+        protected Creature(string name, int hitpoint, IReduceHitpoints reduceHitpoints)
+        {
+            _reduceHitpoints = reduceHitpoints;
+            Name = name;
+            HitPoint = hitpoint;
+
+            Attack = null;
+            Defence = null;
+        }
+
+        protected Creature(string name, int hitpoint, IBoostRange decorator, IReduceHitpoints reduceHitpoints)
+        {
+            _reduceHitpoints = reduceHitpoints;
+            _decorator = decorator;
+            Name = name;
+            HitPoint = hitpoint;
+
+            Attack = null;
+            Defence = null;
+        }
+
         public virtual int Hit()
         {
             if (Attack == null)
@@ -44,6 +64,14 @@ namespace Mandatory2DGameFramework.model.Cretures
         }
         public void ReceiveHit(int hit)
         {
+            if (Defence != null)
+            {
+                hit -= Defence.ReduceHitPoint;
+                if (hit <= 0)
+                {
+                    return;
+                }
+            }
             HitPoint -= hit;
         }
         public virtual void Loot(WorldObject obj)
