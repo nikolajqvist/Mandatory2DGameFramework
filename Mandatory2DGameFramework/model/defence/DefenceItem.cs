@@ -1,4 +1,5 @@
-﻿using Mandatory2DGameFramework.Interfaces;
+﻿using Mandatory2DGameFramework.Factory.FactoryInterfaces;
+using Mandatory2DGameFramework.Interfaces;
 using Mandatory2DGameFramework.worlds;
 using System;
 using System.Collections.Generic;
@@ -8,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Mandatory2DGameFramework.model.defence
 {
-    public class DefenceItem:WorldObject,IReduceHitpoints
+    public class DefenceItem:WorldObject,IReduceHitpoints, IDefenseItem
     {
         private IReduceHitpoints _reducevenmore;
         public int ReduceHitPoint { get; set; }

@@ -9,6 +9,6 @@ namespace Mandatory2DGameFramework.Interfaces
 {
     public interface IAddHitpoints
     {
-        public void MoreHitpoints(int currenthitpoints, int addedhitpoints);
+        public void MoreHitpoints(Creature creature);
     }
 }

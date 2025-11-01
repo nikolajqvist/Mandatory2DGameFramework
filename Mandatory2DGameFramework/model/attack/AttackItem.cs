@@ -1,4 +1,5 @@
-﻿using Mandatory2DGameFramework.Interfaces;
+﻿using Mandatory2DGameFramework.Factory.FactoryInterfaces;
+using Mandatory2DGameFramework.Interfaces;
 using Mandatory2DGameFramework.worlds;
 using System;
 using System.Collections.Generic;
@@ -8,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Mandatory2DGameFramework.model.attack
 {
-    public class AttackItem : WorldObject, IBoostRange
+    public class AttackItem : WorldObject, IBoostRange, IAttackItem
     {
         public string Name { get; set; }
         public int Hit { get; set; }
