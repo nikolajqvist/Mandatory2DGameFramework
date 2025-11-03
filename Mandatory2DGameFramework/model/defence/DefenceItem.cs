@@ -9,9 +9,8 @@ using System.Threading.Tasks;
 
 namespace Mandatory2DGameFramework.model.defence
 {
-    public class DefenceItem:WorldObject,IReduceHitpoints, IDefenseItem
+    public class DefenceItem:WorldObject, IDefenseItem
     {
-        private IReduceHitpoints _reducevenmore;
         public int ReduceHitPoint { get; set; }
 
         public DefenceItem(string name)
@@ -19,21 +18,10 @@ namespace Mandatory2DGameFramework.model.defence
             Name = name;
             ReduceHitPoint = 0;            
         }
-        public DefenceItem(string name, IReduceHitpoints reducevenmore)
-        {
-            Name = name;
-            ReduceHitPoint = 0;
-            _reducevenmore = reducevenmore;
-        }
 
         public override string ToString()
         {
             return $"{{{nameof(Name)}={Name}, {nameof(ReduceHitPoint)}={ReduceHitPoint.ToString()}}}";
-        }
-
-        public void ReduceHitpointsSomeMore(int currentReduction, int toreduceevenmore)
-        {
-            _reducevenmore.ReduceHitpointsSomeMore(currentReduction, toreduceevenmore);
         }
     }
 }

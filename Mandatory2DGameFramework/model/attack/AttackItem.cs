@@ -9,34 +9,20 @@ using System.Threading.Tasks;
 
 namespace Mandatory2DGameFramework.model.attack
 {
-    public class AttackItem : WorldObject, IBoostRange, IAttackItem
+    public class AttackItem : WorldObject, IAttackItem
     {
         public string Name { get; set; }
         public int Hit { get; set; }
         public int Range { get; set; }
-        private IBoostRange _decorator;
         public AttackItem(string name, int hit, int range)
         {
             Name = name;
             Hit = hit;
             Range = range;
         }
-        public AttackItem(string name, int hit, int range, IBoostRange decorator)
-        {
-            Name = name;
-            Hit = hit;
-            Range = range;
-            _decorator = decorator;
-        }
-
         public override string ToString()
         {
             return $"{{{nameof(Name)}={Name}, {nameof(Hit)}={Hit.ToString()}, {nameof(Range)}={Range.ToString()}}}";
-        }
-
-        public void BoostedRange(int currentrange, int addRange)
-        {
-            _decorator.BoostedRange(currentrange, addRange);
         }
     }
 }
