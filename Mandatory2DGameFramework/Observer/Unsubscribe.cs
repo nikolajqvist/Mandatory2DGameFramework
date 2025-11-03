@@ -16,5 +16,6 @@ namespace Mandatory2DGameFramework.Observer
             {
                 notifyDamage.RemoveObserver(loggingdmg);
             }
+        }
     }
 }

@@ -1,4 +1,5 @@
-﻿using Mandatory2DGameFramework.Factory.FactoryInterfaces;
+﻿using Mandatory2DGameFramework.Composite.Interfaces;
+using Mandatory2DGameFramework.Factory.FactoryInterfaces;
 using Mandatory2DGameFramework.Interfaces;
 using Mandatory2DGameFramework.worlds;
 using System;
@@ -9,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace Mandatory2DGameFramework.model.defence
 {
-    public class DefenceItem:WorldObject, IDefenseItem
+    public class DefenceItem:WorldObject, IDefenseItem, IDefense
     {
         public int ReduceHitPoint { get; set; }
 
@@ -18,10 +19,13 @@ namespace Mandatory2DGameFramework.model.defence
             Name = name;
             ReduceHitPoint = 0;            
         }
-
         public override string ToString()
         {
             return $"{{{nameof(Name)}={Name}, {nameof(ReduceHitPoint)}={ReduceHitPoint.ToString()}}}";
+        }
+        public void ShowDefense()
+        {
+            this.ToString();
         }
     }
 }

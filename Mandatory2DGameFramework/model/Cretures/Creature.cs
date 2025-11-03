@@ -23,7 +23,7 @@ namespace Mandatory2DGameFramework.model.Cretures
             HitPoint = hitpoint;
             _boostHit = boostHit;
         }
-        public virtual int Hit()
+        public int Hit()
         {
             if (Attack == null)
             {
@@ -47,7 +47,7 @@ namespace Mandatory2DGameFramework.model.Cretures
             }
             HitPoint -= hit;
         }
-        public virtual void Loot(WorldObject obj)
+        public void Loot(WorldObject obj)
         {
             if (obj == null)
             {
