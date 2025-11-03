@@ -7,11 +7,11 @@ using System.Threading.Tasks;
 
 namespace Mandatory2DGameFramework.Decorator
 {
-    public class EvenReducedHitpoints : IReduceHitpoints
+    public class HitNormal : IBoostHit
     {
-        public void ReduceHitpointsSomeMore(int currentReduction, int toreduceevenmore)
+        public int BoostHit()
         {
-            currentReduction += toreduceevenmore;
+            return 0;
         }
     }
 }

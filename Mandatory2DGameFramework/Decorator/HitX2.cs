@@ -8,11 +8,12 @@ using System.Threading.Tasks;
 
 namespace Mandatory2DGameFramework.Decorator
 {
-    public class BoostRange : IBoostRange
+    public class HitX2 : IBoostHit
     {
-        public void BoostedRange(int currentrange, int addRange)
+        public int BoostHit()
         {
-            currentrange += addRange;
+            int doubleUp = 2;
+            return doubleUp;
         }
     }
 }

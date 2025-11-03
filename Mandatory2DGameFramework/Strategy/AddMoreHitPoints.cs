@@ -13,6 +13,7 @@ namespace Mandatory2DGameFramework.Strategy
         public void MoreHitpoints(Creature creature)
         {
             int addedhp = 50;
+
             creature.HitPoint += addedhp; 
         }
     }

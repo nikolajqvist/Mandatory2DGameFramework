@@ -13,25 +13,25 @@ namespace Mandatory2DGameFramework.model.Cretures
         // Todo consider how many attack / defence weapons are allowed
         public AttackItem? Attack { get; set; }
         public DefenceItem? Defence { get; set; }
-        private IBoostRange? _decorator;
-        private IReduceHitpoints? _reduceHitpoints;
         private IAddHitpoints? _addHitpoints;
+        private IBoostHit? _boostHit;
         protected Creature(string name, int hitpoint, 
-            IBoostRange? decorator, 
-            IReduceHitpoints? reduceHitpoints, 
-            IAddHitpoints? addHitpoints)
+            IAddHitpoints? addHitpoints, IBoostHit? boostHit)
         {
             _addHitpoints = addHitpoints;
-            _reduceHitpoints = reduceHitpoints;
-            _decorator = decorator;
             Name = name;
             HitPoint = hitpoint;
+            _boostHit = boostHit;
         }
         public virtual int Hit()
         {
             if (Attack == null)
             {
-                throw new NullReferenceException("Der mangler et svær for at kunne give skade");
+                throw new NullReferenceException("Der mangler et sværd for at kunne give skade");
+            }
+            if (_boostHit != null)
+            {
+                Attack.Hit *= _boostHit.BoostHit();
             }
             return Attack.Hit;
         }

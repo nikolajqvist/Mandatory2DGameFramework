@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace Mandatory2DGameFramework.Interfaces
 {
-    public interface IReduceHitpoints
+    public interface IBoostHit
     {
-        public void ReduceHitpointsSomeMore(int currentReduction, int toreduceevenmore);
+        public int BoostHit(); 
     }
 }
