@@ -9,7 +9,7 @@ namespace Mandatory2DGameFramework.Composite
 {
     public class DefenseCollection : IDefense
     {
-        List<IDefense> _defenses;
+        private List<IDefense> _defenses;
         public DefenseCollection()
         {
             _defenses = new List<IDefense>();

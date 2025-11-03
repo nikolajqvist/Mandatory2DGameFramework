@@ -1,4 +1,6 @@
-﻿using Mandatory2DGameFramework.Factory.FactoryInterfaces;
+﻿using Mandatory2DGameFramework.Composite;
+using Mandatory2DGameFramework.Composite.Interfaces;
+using Mandatory2DGameFramework.Factory.FactoryInterfaces;
 using Mandatory2DGameFramework.Interfaces;
 using Mandatory2DGameFramework.model.attack;
 using Mandatory2DGameFramework.model.defence;
@@ -10,17 +12,16 @@ namespace Mandatory2DGameFramework.model.Cretures
     {
         public string Name { get; set; }
         public int HitPoint { get; set; }
-        // Todo consider how many attack / defence weapons are allowed
         public AttackItem? Attack { get; set; }
-        public DefenceItem? Defence { get; set; }
-        private IAddHitpoints? _addHitpoints;
+        public IDefense? Defence { get; set; }
+        private IDecorateHp? _decorateHp;
         private IBoostHit? _boostHit;
         protected Creature(string name, int hitpoint, 
-            IAddHitpoints? addHitpoints, IBoostHit? boostHit)
+            IDecorateHp? decorateHp, IBoostHit? boostHit)
         {
-            _addHitpoints = addHitpoints;
             Name = name;
             HitPoint = hitpoint;
+            _decorateHp = decorateHp;
             _boostHit = boostHit;
         }
         public int Hit()
@@ -39,7 +40,10 @@ namespace Mandatory2DGameFramework.model.Cretures
         {
             if (Defence != null)
             {
-                hit -= Defence.ReduceHitPoint;
+                if(Defence is DefenceItem defense)
+                {
+                    hit -= defense.ReduceHitPoint;
+                }
                 if (hit <= 0)
                 {
                     return;
@@ -82,6 +86,10 @@ namespace Mandatory2DGameFramework.model.Cretures
         {
             Attack = null;
             Defence = null;
+        }
+        public void ChangeStrategy(IBoostHit changedBoostHitStrategy)
+        {
+            _boostHit = changedBoostHitStrategy;
         }
     }
 }

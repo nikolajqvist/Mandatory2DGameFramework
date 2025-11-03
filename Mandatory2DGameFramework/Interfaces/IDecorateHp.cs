@@ -7,8 +7,8 @@ using System.Threading.Tasks;
 
 namespace Mandatory2DGameFramework.Interfaces
 {
-    public interface IAddHitpoints
+    public interface IDecorateHp
     {
-        public void MoreHitpoints(Creature creature);
+        public int DecorateHp(Creature creature);
     }
 }

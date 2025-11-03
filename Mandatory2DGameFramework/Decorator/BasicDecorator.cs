@@ -6,15 +6,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Mandatory2DGameFramework.Strategy
+namespace Mandatory2DGameFramework.Decorator
 {
-    public class AddMoreHitPoints:IAddHitpoints
+    public class BasicDecorator : IDecorateHp
     {
-        public void MoreHitpoints(Creature creature)
+        public int DecorateHp(Creature creature)
         {
-            int addedhp = 50;
-
-            creature.HitPoint += addedhp; 
+            return creature.HitPoint;
         }
     }
 }
