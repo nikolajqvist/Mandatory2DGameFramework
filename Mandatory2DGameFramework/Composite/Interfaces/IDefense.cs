@@ -8,6 +8,6 @@ namespace Mandatory2DGameFramework.Composite.Interfaces
 {
     public interface IDefense
     {
-        public void ShowDefense();
+        public int ReduceHitPoint { get; }
     }
 }

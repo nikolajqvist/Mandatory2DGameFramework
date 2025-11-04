@@ -14,18 +14,17 @@ namespace Mandatory2DGameFramework.model.defence
     {
         public int ReduceHitPoint { get; set; }
 
-        public DefenceItem(string name)
+        public DefenceItem():base("Skjoldpold")
         {
-            Name = name;
-            ReduceHitPoint = 0;            
+            
+        }
+        public DefenceItem(string name, int reducehitpoint):base(name)
+        {
+            ReduceHitPoint = reducehitpoint;
         }
         public override string ToString()
         {
             return $"{{{nameof(Name)}={Name}, {nameof(ReduceHitPoint)}={ReduceHitPoint.ToString()}}}";
-        }
-        public void ShowDefense()
-        {
-            this.ToString();
         }
     }
 }

@@ -10,14 +10,18 @@ namespace Mandatory2DGameFramework.Decorator
 {
     public class AbstractHpDecorator : IDecorateHp
     {
-        protected readonly IDecorateHp _decorator;
-        public AbstractHpDecorator(IDecorateHp decorator)
+        private IDecorateHp _decoratorHp;
+        public AbstractHpDecorator(IDecorateHp decoratorHp)
         {
-            _decorator = decorator;
+            _decoratorHp = decoratorHp;
         }
-        public virtual int DecorateHp(Creature creature)
+        public virtual int DecorateHp() 
         {
-            return _decorator.DecorateHp(creature);
+            return _decoratorHp.DecorateHp();       
+        }
+        public virtual IDecorateHp ChangeDecorator(IDecorateHp changeDecorator)
+        {
+            return changeDecorator;
         }
     }
 }

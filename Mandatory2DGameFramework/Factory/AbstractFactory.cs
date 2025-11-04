@@ -8,10 +8,13 @@ using System.Threading.Tasks;
 
 namespace Mandatory2DGameFramework.Factory
 {
+    /// <summary>
+    /// Denne klasse laver en creature, men den skal arves fra.
+    /// </summary>
     public abstract class AbstractFactory
     {
-        public abstract IAttackItem CreateAttackItem();
-        public abstract IDefenseItem CreateDefenseItem();
-        public abstract ICreature CreateCreature();
+        public abstract IAttackItem CreateAttackItem(IAttackItem itemToCreate);
+        public abstract IDefenseItem CreateDefenseItem(IDefenseItem itemToCreate);
+        public abstract ICreature CreateCreature(ICreature creatureToCreate);
     }
 }

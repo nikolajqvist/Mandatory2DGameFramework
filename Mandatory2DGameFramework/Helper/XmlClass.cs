@@ -7,16 +7,26 @@ using System.Xml;
 
 namespace Mandatory2DGameFramework.Xml
 {
+    /// <summary>
+    /// Denne klasse henter attributer fra en fil
+    /// </summary>
     public class XmlClass
     {
         private string _xmlPath;
         private readonly XmlDocument _xmlDocument;
-        public XmlClass(string xmlpath)
+        /// <summary>
+        /// Konstruktøren af XmlClass
+        /// </summary>
+        public XmlClass()
         {
-            _xmlPath = xmlpath;
+            _xmlPath = "C:\\Users\\nqvis\\Downloads\\Mandatory2DGameFramework\\Mandatory2DGameFramework\\Mandatory2DGameFramework\\Config\\XMLFile1.xml";
             _xmlDocument = new XmlDocument();
         }
-
+        /// <summary>
+        /// Henter en int og konverter det fra string hentes fra en fil.
+        /// </summary>
+        /// <param name="XorY"></param>
+        /// <returns></returns>
         public int GetXmlInt(string XorY)
         {
             int value = 0;
@@ -29,6 +39,11 @@ namespace Mandatory2DGameFramework.Xml
             }
             return value;
         }
+        /// <summary>
+        /// Henter en string fra en fil.
+        /// </summary>
+        /// <param name="nodefromXml"></param>
+        /// <returns></returns>
         public string GetXmlString(string nodefromXml)
         {
             string stringtoreturn = null;

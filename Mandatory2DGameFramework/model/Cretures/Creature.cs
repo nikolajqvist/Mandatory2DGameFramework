@@ -1,6 +1,7 @@
 ﻿using Mandatory2DGameFramework.Composite;
 using Mandatory2DGameFramework.Composite.Interfaces;
 using Mandatory2DGameFramework.Factory.FactoryInterfaces;
+using Mandatory2DGameFramework.Helper;
 using Mandatory2DGameFramework.Interfaces;
 using Mandatory2DGameFramework.model.attack;
 using Mandatory2DGameFramework.model.defence;
@@ -8,49 +9,55 @@ using Mandatory2DGameFramework.worlds;
 
 namespace Mandatory2DGameFramework.model.Cretures
 {
+    /// <summary>
+    /// Denne klasses skal arves fra, dette er det creature som du vil oprette i din verden.
+    /// </summary>
     public abstract class Creature: WorldObject, IDisposable, ICreature
     {
-        public string Name { get; set; }
         public int HitPoint { get; set; }
         public AttackItem? Attack { get; set; }
         public IDefense? Defence { get; set; }
-        private IDecorateHp? _decorateHp;
-        private IBoostHit? _boostHit;
-        protected Creature(string name, int hitpoint, 
-            IDecorateHp? decorateHp, IBoostHit? boostHit)
+        /// <summary>
+        /// Default kontruktør for creature.
+        /// </summary>
+        protected Creature():base("Troels")
         {
-            Name = name;
-            HitPoint = hitpoint;
-            _decorateHp = decorateHp;
-            _boostHit = boostHit;
+            HitPoint = 120;
+            Attack = null;
+            Defence = null;
         }
-        public int Hit()
+        /// <summary>
+        /// Det her sådan et creature bliver født, den skal have et navn og antal hitpoint
+        /// </summary>
+        /// <param name="name">Navnet på creature.</param>
+        /// <param name="hitpoint">Creatures HP.</param>
+        protected Creature(string name, int hitpoint):base(name)
+        {
+            HitPoint = hitpoint;
+        }
+        public virtual uint Hit()
         {
             if (Attack == null)
             {
                 throw new NullReferenceException("Der mangler et sværd for at kunne give skade");
             }
-            if (_boostHit != null)
-            {
-                Attack.Hit *= _boostHit.BoostHit();
-            }
             return Attack.Hit;
         }
+        /// <summary>
+        /// Denne metode bruges til udregne Hittet fra en anden, men grundet SRP gør den det ikke selv.
+        /// </summary>
+        /// <param name="hit">Skaden til creature.</param>
         public void ReceiveHit(int hit)
         {
-            if (Defence != null)
-            {
-                if(Defence is DefenceItem defense)
-                {
-                    hit -= defense.ReduceHitPoint;
-                }
-                if (hit <= 0)
-                {
-                    return;
-                }
-            }
-            HitPoint -= hit;
+            if(Defence != null)
+            CalculateHit.Calculate(Defence, HitPoint, hit);
         }
+        /// <summary>
+        /// Dette er min loot metode som skal bruge et WorldObject, men det kan kun bruge DefenseItem og AttackItem
+        /// </summary>
+        /// <param name="obj">Selve objektet du vil loote.</param>
+        /// <exception cref="NullReferenceException">Hvis den er null forvejen.</exception>
+        /// <exception cref="Exception">Hvis den ikke er null i forvejen.</exception>
         public void Loot(WorldObject obj)
         {
             if (obj == null)
@@ -81,15 +88,13 @@ namespace Mandatory2DGameFramework.model.Cretures
         {
             return $"{{{nameof(Name)}={Name}, {nameof(HitPoint)}={HitPoint.ToString()}, {nameof(Attack)}={Attack}, {nameof(Defence)}={Defence}}}";
         }
-
+        /// <summary>
+        /// Denne metode smider dit skjold og dit sværd fra dig.
+        /// </summary>
         public void Dispose()
         {
             Attack = null;
             Defence = null;
-        }
-        public void ChangeStrategy(IBoostHit changedBoostHitStrategy)
-        {
-            _boostHit = changedBoostHitStrategy;
         }
     }
 }

@@ -13,10 +13,10 @@ namespace Mandatory2DGameFramework.Decorator
         public SomeExtraHp(IDecorateHp decorator) : base(decorator)
         {
         }
-        public override int DecorateHp(Creature creature)
+        public override int DecorateHp()
         {
             int someextrahp = 20;
-            int frombase = base.DecorateHp(creature);
+            int frombase = base.DecorateHp();
             return frombase += someextrahp;
         }
     }

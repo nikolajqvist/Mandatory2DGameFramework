@@ -10,9 +10,14 @@ namespace Mandatory2DGameFramework.Decorator
 {
     public class BasicDecorator : IDecorateHp
     {
-        public int DecorateHp(Creature creature)
+        private int _hitPoint = 0;
+        public BasicDecorator(int hitPoint)
         {
-            return creature.HitPoint;
+            _hitPoint = hitPoint;
+        }
+        public int DecorateHp()
+        {
+            return _hitPoint;
         }
     }
 }
