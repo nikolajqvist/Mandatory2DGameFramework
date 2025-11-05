@@ -34,6 +34,8 @@ namespace Mandatory2DGameFramework.model.Cretures
         protected Creature(string name, int hitpoint):base(name)
         {
             HitPoint = hitpoint;
+            Attack = null;
+            Defence = null;
         }
         public virtual uint Hit()
         {
