@@ -10,14 +10,18 @@ namespace Mandatory2DGameFramework.Decorator
 {
     public class BasicDecorator : IDecorateHp
     {
-        private int _hitPoint = 0;
-        public BasicDecorator(int hitPoint)
+        private int _hitPoint;
+        public BasicDecorator()
         {
-            _hitPoint = hitPoint;
+            _hitPoint = 0;
         }
-        public int DecorateHp()
+        public int DecorateHp(int addsomeHp)
         {
-            return _hitPoint;
+            if(addsomeHp > 5 || addsomeHp < 0)
+            {
+                throw new ArgumentOutOfRangeException("Skal være mellem 0 og 5");
+            }
+            return _hitPoint += addsomeHp;
         }
     }
 }

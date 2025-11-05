@@ -13,11 +13,13 @@ namespace Mandatory2DGameFramework.Decorator
         public LotsExtraHp(IDecorateHp decorator) : base(decorator)
         {
         }
-        public override int DecorateHp()
+        public override int DecorateHp(int addLotsOfHp)
         {
-            int lotsextrahp = 2000;
-            int frombase = base.DecorateHp();
-            return frombase += lotsextrahp;
+            if(addLotsOfHp > 2000 || addLotsOfHp < 500)
+            {
+                throw new ArgumentOutOfRangeException("Skal være mellem 500 og 2000");
+            }
+            return base.DecorateHp(addLotsOfHp);
         }
     }
 }

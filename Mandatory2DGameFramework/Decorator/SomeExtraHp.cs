@@ -13,11 +13,13 @@ namespace Mandatory2DGameFramework.Decorator
         public SomeExtraHp(IDecorateHp decorator) : base(decorator)
         {
         }
-        public override int DecorateHp()
+        public override int DecorateHp(int addSomeHp)
         {
-            int someextrahp = 20;
-            int frombase = base.DecorateHp();
-            return frombase += someextrahp;
+            if (addSomeHp > 30 || addSomeHp < 10)
+            {
+                throw new ArgumentOutOfRangeException("Skal være mellem 10 og 30");
+            }
+            return base.DecorateHp(addSomeHp);
         }
     }
 }

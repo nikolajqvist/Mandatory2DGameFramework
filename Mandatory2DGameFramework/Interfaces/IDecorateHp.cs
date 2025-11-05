@@ -9,6 +9,6 @@ namespace Mandatory2DGameFramework.Interfaces
 {
     public interface IDecorateHp
     {
-        public int DecorateHp();
+        public int DecorateHp(int extraHp);
     }
 }

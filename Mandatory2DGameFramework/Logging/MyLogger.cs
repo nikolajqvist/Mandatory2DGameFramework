@@ -16,7 +16,7 @@ namespace Mandatory2DGameFramework.Logging
         private MyLogger()
         {
             _traceSource = new TraceSource("Peter's spil");
-            _traceSource.Switch = new SourceSwitch("Peter's switch", "All");
+            _traceSource.Switch = new SourceSwitch("Peter's switch", SourceLevels.All.ToString());
         }
         public static MyLogger GetInstance()
         {
