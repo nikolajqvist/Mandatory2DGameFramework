@@ -37,7 +37,7 @@ namespace Mandatory2DGameFramework.model.Cretures
             Attack = null;
             Defence = null;
         }
-        public virtual uint Hit()
+        public virtual int Hit()
         {
             if (Attack == null)
             {
@@ -97,6 +97,15 @@ namespace Mandatory2DGameFramework.model.Cretures
         {
             Attack = null;
             Defence = null;
+        }
+        /// <summary>
+        /// Overholder ikke helt solid, men synes det creature selv der skal være herre over at skifte strategy
+        /// </summary>
+        /// <param name="newStrategy">ny strategi</param>
+        public void ChangeStrategy(IBoostHit newStrategy)
+        {
+            if(Attack != null)
+            Attack.BoostHit = newStrategy;
         }
     }
 }

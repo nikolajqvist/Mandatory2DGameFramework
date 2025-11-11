@@ -4,15 +4,20 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Mandatory2DGameFramework.Interfaces;
+using Mandatory2DGameFramework.model.Cretures;
 
 namespace Mandatory2DGameFramework.Decorator
 {
     public class HitX5 : IBoostHit
     {
-        public int BoostHit()
+        /// <summary>
+        /// Denne metode booster creatures hit
+        /// </summary>
+        /// <param name="creature">creature to boost</param>
+        /// <returns>det boostede hit</returns>
+        public int BoostHit(Creature creature)
         {
-            int fiveIt = 5;
-            return fiveIt;
+            return creature.Attack.Hit * 5;
         }
     }
 }

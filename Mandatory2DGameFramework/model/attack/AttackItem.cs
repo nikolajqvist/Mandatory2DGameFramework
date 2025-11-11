@@ -16,31 +16,33 @@ namespace Mandatory2DGameFramework.model.attack
     public class AttackItem : WorldObject, IAttackItem
     {
         private IBoostHit? _boostHit;
+        private int _hit;
+        private int _range;
         public IBoostHit? BoostHit { get { return _boostHit; } set { _boostHit = value; } }
         /// <summary>
         /// Dette er AttackItems "styrke".
         /// </summary>
-        public uint Hit
+        public int Hit
         {
-            get { return this.Hit; }
+            get { return _hit; }
             set { if (value < 0)
                 {
                     throw new ArgumentOutOfRangeException("Hit kan ikke være under 0");
                 }
-                this.Hit = value;
+                _hit = value;
             }
         }
         /// <summary>
         /// Dette er AttackItems længde på våbenet.
         /// </summary>
-        public uint Range 
+        public int Range 
         { 
-            get { return this.Range; } 
+            get { return _range; } 
             set { if (value < 0)
                 {
                     throw new ArgumentOutOfRangeException("Range kan ikke være under 0");
                 }
-                this.Range = value;
+                _range = value;
             } 
         }
         public AttackItem():base("Sværd")
@@ -55,11 +57,17 @@ namespace Mandatory2DGameFramework.model.attack
         /// <param name="hit"></param>
         /// <param name="range"></param>
         /// <param name="boostHit"></param>
-        public AttackItem(string name, uint hit, uint range, IBoostHit? boostHit = null) : base(name)
+        public AttackItem(string name, int hit, int range,bool lootAble, bool removeAble, IBoostHit? boostHit = null) : base(name)
         {
             Hit = hit;
             Range = range;
+            Lootable = lootAble;
+            Removeable = removeAble;
             _boostHit = (boostHit == null)? new HitNormal() : boostHit;
+        }
+        public void ChangeStrategy(IBoostHit newstrategy)
+        {
+            _boostHit = newstrategy;
         }
         public override string ToString()
         {

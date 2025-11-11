@@ -1,18 +1,24 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Mandatory2DGameFramework.Interfaces;
+using Mandatory2DGameFramework.model.Cretures;
 
 namespace Mandatory2DGameFramework.Decorator
 {
     public class HitX10 : IBoostHit
     {
-        public int BoostHit()
+        /// <summary>
+        /// Denne metode booster creatures hit
+        /// </summary>
+        /// <param name="creature">creture to boost</param>
+        /// <returns>det boostede hit</returns>
+        public int BoostHit(Creature creature)
         {
-            int tenIt = 10;
-            return tenIt;
+            return creature.Attack.Hit * 10;
         }
     }
 }

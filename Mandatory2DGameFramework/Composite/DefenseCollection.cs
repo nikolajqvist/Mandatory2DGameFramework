@@ -55,6 +55,6 @@ namespace Mandatory2DGameFramework.Composite
                 throw new ArgumentNullException("Kunne ikke fjerne denne IDefense");
             }
         }
-        }
     }
 }
+

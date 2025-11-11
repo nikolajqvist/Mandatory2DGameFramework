@@ -14,13 +14,13 @@ namespace Mandatory2DGameFramework.Decorator
         {
         }
 
-        public override int DecorateHp(int addsomeHp)
+        public override int DecorateHp(Creature togiveHp, int addsomeHp)
         {
             if(addsomeHp != 0)
             {
                 throw new ArgumentOutOfRangeException("Skal være 0, buhuu!");
             }
-            return base.DecorateHp(addsomeHp);
+            return base.DecorateHp(togiveHp, addsomeHp);
         }
     }
 }

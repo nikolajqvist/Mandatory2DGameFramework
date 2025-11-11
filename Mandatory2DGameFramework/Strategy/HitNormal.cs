@@ -1,4 +1,5 @@
 ﻿using Mandatory2DGameFramework.Interfaces;
+using Mandatory2DGameFramework.model.Cretures;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,9 +10,14 @@ namespace Mandatory2DGameFramework.Decorator
 {
     public class HitNormal : IBoostHit
     {
-        public int BoostHit()
+        /// <summary>
+        /// Denne metode booster creatures hit
+        /// </summary>
+        /// <param name="creature">creature to boost</param>
+        /// <returns>det boostede hit</returns>
+        public int BoostHit(Creature creature)
         {
-            return 0;
+            return creature.Attack.Hit;
         }
     }
 }

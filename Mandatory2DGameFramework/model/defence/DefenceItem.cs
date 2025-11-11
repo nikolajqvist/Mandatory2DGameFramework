@@ -18,9 +18,11 @@ namespace Mandatory2DGameFramework.model.defence
         {
             
         }
-        public DefenceItem(string name, int reducehitpoint):base(name)
+        public DefenceItem(string name, int reducehitpoint, bool lootAble, bool removeAble):base(name)
         {
             ReduceHitPoint = reducehitpoint;
+            Lootable = lootAble;
+            Removeable = removeAble;
         }
         public override string ToString()
         {

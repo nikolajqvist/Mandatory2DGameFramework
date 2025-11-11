@@ -15,9 +15,9 @@ namespace Mandatory2DGameFramework.Decorator
         {
             _decoratorHp = decoratorHp;
         }
-        public virtual int DecorateHp(int addSomeHp) 
+        public virtual int DecorateHp(Creature togiveHp, int addSomeHp) 
         {
-            return _decoratorHp.DecorateHp(addSomeHp);       
+            return _decoratorHp.DecorateHp(togiveHp, addSomeHp);       
         }
     }
 }

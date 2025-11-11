@@ -10,7 +10,7 @@ namespace Mandatory2DGameFramework.Observer
 {
     public class NotifyDamage
     {
-        private readonly List<IDamgeLogging> _observers = new List<IDamageLogging>();
+        private readonly List<IDamageLogging> _observers = new List<IDamageLogging>();
 
         public void AddObserver(IDamageLogging observer) 
         {
