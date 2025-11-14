@@ -16,6 +16,7 @@ namespace Mandatory2DGameFramework.model.Cretures
     {
         public int HitPoint { get; set; }
         public AttackItem? Attack { get; set; }
+        public Position Position { get; set; }
         public IDefense? Defence { get; set; }
         /// <summary>
         /// Default kontruktør for creature.
@@ -31,8 +32,10 @@ namespace Mandatory2DGameFramework.model.Cretures
         /// </summary>
         /// <param name="name">Navnet på creature.</param>
         /// <param name="hitpoint">Creatures HP.</param>
-        protected Creature(string name, int hitpoint):base(name)
+        /// <param name="position">Creatures position</param>
+        protected Creature(string name, int hitpoint, Position position):base(name)
         {
+            Position = position;
             HitPoint = hitpoint;
             Attack = null;
             Defence = null;

@@ -56,8 +56,12 @@ namespace Mandatory2DGameFramework.model.attack
         /// <param name="name"></param>
         /// <param name="hit"></param>
         /// <param name="range"></param>
+        /// <param name="lootAble"></param>
+        /// <param name="removeAble"></param>
+        /// <param name="placementX"></param>
+        /// <param name="placementY"></param>
         /// <param name="boostHit"></param>
-        public AttackItem(string name, int hit, int range,bool lootAble, bool removeAble, IBoostHit? boostHit = null) : base(name)
+        public AttackItem(string name, int hit, int range, bool lootAble, bool removeAble, int placementX, int placementY, IBoostHit? boostHit = null) : base(name)
         {
             Hit = hit;
             Range = range;
