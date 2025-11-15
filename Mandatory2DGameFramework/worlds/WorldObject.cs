@@ -11,8 +11,10 @@ namespace Mandatory2DGameFramework.worlds
         public string Name { get; set; }
         public bool Lootable { get; set; }
         public bool Removeable { get; set; }
-        public WorldObject(string name)
+        public Position Position { get; set; }
+        public WorldObject(string name, Position position)
         {
+            Position = position;
             Name = name;
             Lootable = false;
             Removeable = false;

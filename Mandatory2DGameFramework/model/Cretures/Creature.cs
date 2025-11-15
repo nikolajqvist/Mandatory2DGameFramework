@@ -21,7 +21,7 @@ namespace Mandatory2DGameFramework.model.Cretures
         /// <summary>
         /// Default kontruktør for creature.
         /// </summary>
-        protected Creature():base("Troels")
+        protected Creature():base("Troels", new Position(0,0))
         {
             HitPoint = 120;
             Attack = null;
@@ -33,21 +33,18 @@ namespace Mandatory2DGameFramework.model.Cretures
         /// <param name="name">Navnet på creature.</param>
         /// <param name="hitpoint">Creatures HP.</param>
         /// <param name="position">Creatures position</param>
-        protected Creature(string name, int hitpoint, Position position):base(name)
+        protected Creature(string name, int hitpoint, Position position):base(name, position)
         {
             Position = position;
             HitPoint = hitpoint;
             Attack = null;
             Defence = null;
         }
-        public virtual int Hit()
-        {
-            if (Attack == null)
-            {
-                throw new NullReferenceException("Der mangler et sværd for at kunne give skade");
-            }
-            return Attack.Hit;
-        }
+        /// <summary>
+        /// Hit metoden til creature.
+        /// </summary>
+        /// <returns>Tallet der gives i skade. Fx. Sværdet.</returns>
+        public abstract int Hit();
         /// <summary>
         /// Denne metode bruges til udregne Hittet fra en anden, men grundet SRP gør den det ikke selv.
         /// </summary>

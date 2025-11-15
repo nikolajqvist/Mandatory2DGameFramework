@@ -45,10 +45,10 @@ namespace Mandatory2DGameFramework.model.attack
                 _range = value;
             } 
         }
-        public AttackItem():base("Sværd")
+        public AttackItem():base("Sværd", new Position(0, 0))
         {
-            Hit = 120;
-            Range = 5;
+            Hit = 2;
+            Range = 1;
         }
         /// <summary>
         /// Det her er sådan et attackitem bliver født, den skal have name, hit og range, boostHit er nullable
@@ -61,13 +61,13 @@ namespace Mandatory2DGameFramework.model.attack
         /// <param name="placementX"></param>
         /// <param name="placementY"></param>
         /// <param name="boostHit"></param>
-        public AttackItem(string name, int hit, int range, bool lootAble, bool removeAble, int placementX, int placementY, IBoostHit? boostHit = null) : base(name)
+        public AttackItem(string name, int hit, int range, bool lootAble, bool removeAble, int placementX, int placementY, Position position, IBoostHit? boostHit = null) : base(name, position)
         {
             Hit = hit;
             Range = range;
             Lootable = lootAble;
             Removeable = removeAble;
-            _boostHit = (boostHit == null)? new HitNormal() : boostHit;
+            _boostHit = (boostHit == null) ? new HitNormal() : boostHit;
         }
         public void ChangeStrategy(IBoostHit newstrategy)
         {

@@ -14,11 +14,11 @@ namespace Mandatory2DGameFramework.model.defence
     {
         public int ReduceHitPoint { get; set; }
 
-        public DefenceItem():base("Skjoldpold")
+        public DefenceItem():base("Skjoldpold", new Position(0, 0))
         {
-            
+            ReduceHitPoint = 0;
         }
-        public DefenceItem(string name, int reducehitpoint, bool lootAble, bool removeAble):base(name)
+        public DefenceItem(string name, int reducehitpoint, bool lootAble, bool removeAble, Position position):base(name, position)
         {
             ReduceHitPoint = reducehitpoint;
             Lootable = lootAble;
